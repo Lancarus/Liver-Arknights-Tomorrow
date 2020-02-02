@@ -1,0 +1,76 @@
+Sub 选图()
+    If 星期 = 2 or 星期 = 4 Then 
+        每局时间=2
+	
+        //	If aa \ 10 =0 0 Then 
+        //		TracePrint "打一次剿灭"
+        //	End If
+        点击 778, 1474
+        Delay 1500
+        点击 87,350
+        Delay 1500
+        点击 535,1075
+        Delay 1500
+        点击 806,1407
+        Delay 1500
+        KeepCapture
+        If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
+            点击 194, 1601
+            Delay 1500
+        End If
+    ElseIf 星期 = 6 or 星期 = 7 Then
+        每局时间=2
+        点击 778, 1474
+        Delay 1500
+        点击 87,350
+        Delay 1500
+        点击 471,1475
+        Delay 1500
+        点击 806,1407
+        Delay 1500
+        KeepCapture 
+	
+        If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
+            点击 194, 1601
+            Delay 1500
+        End If
+    Else 
+        每局时间=1
+        点击 778, 1474
+        Delay 1500
+        点击 397,260
+        Delay 2000
+	
+        For 6		
+            点击 73,1471
+            Delay 1500
+        Next
+        点击 73, 1766
+        Delay 1500
+	
+        For 3
+            Swipe 420,834,356,1568,800
+        Next
+        Delay 200
+        点击 401,1656
+        Delay 1500
+        点击 403,1259
+        Delay 1500
+        点击 404,1237
+        Delay 1500
+        点击 566,1122
+        Delay 1500
+        点击 559,1306
+        Delay 1500
+        点击 742,1122
+        Delay 1500
+        点击 738,1268
+        Delay 1500
+        KeepCapture 
+	
+        If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
+            点击 194, 1601
+            Delay 1500
+        End If
+    End If
+End Sub
