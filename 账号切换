@@ -1,0 +1,64 @@
+Sub 登录(a)
+    等待 开始唤醒, 1000, 3, true
+    Delay 1000
+    点击 310, 585
+    Delay 2000
+    点击 424, 852
+    Delay 700
+    InputText 账号(a)
+	
+    点击 62,1823
+    Delay 700
+    ShowMessage "第"&a&"个号"
+    点击 350,828
+    Delay 700
+    InputText 密码(a)
+    点击 62,1823
+    Delay 700
+    点击 198, 957
+    
+    Delay 5000
+    ShowMessage "检测公告"
+    等待 (公告, 2000, 5, true)
+    If 等待(获得物资, 2000, 5, true) = true Then 
+        ShowMessage "检测签到"
+        等待 签到, 1000, 5, true
+        Delay 5000
+        KeepCapture 
+        If 判断(活动签到) = true Then 
+            ShowMessage "活动"
+            点击 799, 1656
+            点击 604,1652
+            点击 423,1654
+            点击 210,1654
+            Delay 5000
+            等待 获得物资, 1000, 5, true
+            Delay 1000
+            点击 958, 1853
+            Delay 1000
+        End If
+    End If	
+	
+    等待 主页, 1000, 5, false
+    ShowMessage "领邮件"
+    点击 1020, 291
+    Delay 4000
+    点击 77, 1715
+    等待 获得物资, 1000, 5, true
+    Delay 1000
+    点击 76,1326
+    Delay 2000 
+    点击 1014, 122
+    Delay 2000
+    TracePrint "主页"
+End Sub
+
+Sub 切换()
+    等待 主页, 1500, 10, true
+    Delay 2000
+    点击 306, 939
+    Delay 1000
+    点击 299, 1350
+    Delay 5000
+    等待 开始唤醒,1000,5,false
+End Sub
