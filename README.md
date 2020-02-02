@@ -7,11 +7,11 @@
 
 3.单账号请在选好关卡开启代理后运行
 
-(https://github.com/Lancarus/a-mobile-anjian-script-for-arknight/blob/master/img/1.png)
+![image](https://github.com/Lancarus/a-mobile-anjian-script-for-arknight/blob/master/img/1.png)
 
 4.多账号请输入好账号密码后（中间不要有空格，用半角逗号隔开，比如  账号1,账号2）
 
-(https://github.com/Lancarus/a-mobile-anjian-script-for-arknight/blob/master/img/2.png)
+![image](https://github.com/Lancarus/a-mobile-anjian-script-for-arknight/blob/master/img/2.png)
 
 
 —————————————分割线————————————————
