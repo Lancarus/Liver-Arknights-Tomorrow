@@ -1,0 +1,73 @@
+
+
+Sub 点击(a, b)
+	dim x=a+5 * Rnd() -5'随机漂移5个像素
+	dim y=b+5 * Rnd() -5
+	TouchDownEvent x,y,0
+    Delay 75+Int(((20) * Rnd()) + 1)'随机延时20毫秒
+    TouchUpEvent 0
+End Sub
+
+Function 判断(数组)
+    判断=False
+    Dim arr()
+    arr = 数组
+    If IsNumeric(arr(2))= True Then     
+        If InStr(1,Join(arr,","),"|") > 1 Then
+            findMultiColor (arr(0), arr(1), arr(2), arr(3), arr(4), arr(5), 1,0.9,intX,intY)
+        	If intX > 0 Then 
+        		判断=true
+        	End If
+        Else'否则为范围查找单色
+           If FindColor(arr(0), arr(1), arr(2), arr(3), arr(4), 1, 0.9, intX, intY) = 1 Then 
+           	判断 = true           	
+           End If            
+        End If
+    ElseIf IsNumeric(arr(1))=True Then'数组特征第二个值为数字则为固定多点比色
+        If CmpColorEx(arr(2), 0.9) = 1 Then 
+        	判断=true
+        End If
+    Else
+        TracePrint "数组异常：" & Join(arr,"|")
+    End If
+End Function
+
+Function 等待(数组, 搜索间隔, 超出次数,是否点击)
+	Dim i
+	i = 0
+	等待=False
+	Do
+		KeepCapture 
+		If 判断(数组)=true Then 
+		 	等待 = true
+		 	If 是否点击 = true Then 
+		 		Delay 1000
+		 		点击 (数组(0), 数组(1))
+		 	End If
+		 	Exit Do
+		Else 
+			Delay 搜索间隔			
+		End If
+		i = i + 1
+        If i > 超出次数 Then 
+        	Exit Do 
+        End If
+        ReleaseCapture
+	Loop
+	Delay 1000
+End Function
+
+Function 字符串转数组(text)
+	Dim tex= text
+	Dim arr()
+	dim i,n,m	
+	i = 0	
+	n = 0
+	Do	    
+		m = InStr(n + 1, tex, ",")'分隔符为逗号	
+		arr(i) = Mid(tex, n+1, m-n-1)		
+		i = i + 1		
+		n=m
+	Loop Until  m=0	
+	字符串转数组=arr	
+End Function
