@@ -71,3 +71,4 @@ Function 字符串转数组(text)
 	Loop Until  m=0	
 	字符串转数组=arr	
 End Function
+
