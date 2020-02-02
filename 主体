@@ -1,0 +1,176 @@
+SetScreenScale 1080, 1920, 0
+SetControlBarPos 0.3,0,0
+dim 包名 = Sys.GetFront()
+//TracePrint 包名
+//ShowMessage 包名
+Dim IntX,IntY
+Randomize
+//
+//Import "DateTime.lua"
+//Import "zm.luae" //导入插件,只需执行一次
+//zm.Init  //初始化插件,只需执行一次
+
+
+Dim 星期,小时
+小时 = datetime.Hour()
+
+
+
+Dim 模式=cint(readuiconfig("模式"))
+Dim 碎石=readuiconfig("碎石")
+Dim 嗑药=readuiconfig("嗑药")
+Dim 每局时间=cint(readuiconfig("每局时间"))
+Dim 自动换岗=readuiconfig("自动换岗")
+Dim 开始账号数=cint(readuiconfig("几号"))
+Dim 打剿灭=readuiconfig("打剿灭")
+Dim 好友页=cint(readuiconfig("好友数"))\4+1
+
+
+Dim 换建造站干员=ReadUIConfig("换建造站干员")
+Dim 换贸易站干员=ReadUIConfig("换贸易站干员")
+Dim 换发电站干员=ReadUIConfig("换发电站干员")
+Dim 自动送线索=ReadUIConfig("自动送线索")
+Dim 买信用商店=ReadUIConfig("买信用商店")
+Dim 建造站数量=cint(readuiconfig("建造站数量"))
+Dim 建造站=3*cint(readuiconfig("建造站楼层"))+cint(readuiconfig("建造站房间号"))
+Dim 贸易站数量=cint(readuiconfig("贸易站数量"))
+Dim 贸易站=3*cint(readuiconfig("贸易站楼层"))+cint(readuiconfig("贸易站房间号"))
+
+Dim 发电站数量=0
+dim 发电站()
+
+For n = 1 To 3
+    For m = 1 To 3
+		
+        If ReadUIConfig(n & "0" & m) = true Then 
+			
+            发电站(发电站数量) = (n - 1) * 3 + m - 1
+            //			TracePrint 发电站数量, 发电站(发电站数量)
+            发电站数量=发电站数量+1
+        End If
+    Next
+Next
+
+//TracePrint 建造站数量,建造站,贸易站数量,贸易站,发电站数量
+Dim aaa
+
+Dim 主页=array(1019,50,"1001|75|FFFFFF,658|1406|1F62FE,373|1309|E5BE4A,213|478|414141")
+Dim 行动结束=array(40,1819,"139|85|FFFFFF,45|664|FFFFFF,73|842|01CCF0,72|839|02CAEF")
+Dim 开始1=array(123,1738,"129|1761|D79500,50|1780|232323,55|1428|373737")
+Dim 开始2=array(122,1741,"122|1741|0046C1,501|1577|0046C1,437|1658|FFFFFF,1020|162|313131")
+Dim 理智用完=array(217,1183,"198|1169|313131,224|1631|313131,539|544|FAFBFB,211|1737|FCFCFC")
+Dim 有药=array(217,1625,"887|1056|FFFFFF,232|1631|313131,646|977|E9AB1F")
+Dim 换工作=array(321,1364,"338|1263|FFFFFF,338|1384|141477,295|1278|FFFFFF,579|1340|333333")
+Dim 基建=array(1031,1094,"1031|1094|FF92DC,1013|1376|47ECCB,191|308|F1F0F1,747|1518|303535")
+Dim 好友界面=array(1031,1094,"839|56|CACACA,882|230|313131,878|1095|00DAFB,889|390|DC9800")
+Dim 升级=array(402,249,"402|249|FFFFFF,645|245|FFFFFF,553|1019|FFFFFF,361|238|131313")
+Dim 返回=array(1012,194,"1012|194|313131,1024|405|D8D8D8,1002|551|313131")
+Dim 剿灭打完=array(614,1419,"614|1419|FFFFFF,508|1399|0277FA,547|238|DC9800")
+Dim 获得物资=array(114,958,"958|961|969796,992|1030|9B9C9C,105|953|76868A,143|968|292929")
+Dim 开始唤醒=array(58,1389,"49|1307|585858,306|666|E8E8E8,541|1069|181821,145|961|E9E9E9")
+Dim 公告=array(994,1858,"994|1858|C8C8C8,893|1846|191919,929|92|070707,118|1785|CFD0D0")
+Dim 签到=array(956,1804,"956|1804|595959,103|1776|00B8F4,95|1245|313131,976|98|00B8F4")
+Dim 活动签到=array(957,1851,"957|1851|BEBEBE,949|1826|595959,112|1844|414141")
+Dim 交流结束=array(1014,85,"930|46|0062CE,903|542|0062CE,821|81|FFFFFF")
+
+
+Dim 房间=array(597,95,603,419,607,727,436,31,431,257,427,569,260,93,260,425,271,729)
+
+
+
+Dim 账号=字符串转数组(ReadUIConfig("账号")&",")
+
+Dim 密码=字符串转数组(ReadUIConfig("密码")&",")
+Dim 账号个数=UBound(账号)+1
+Dim 密码个数=UBound(密码)+1
+TracePrint 账号个数,密码个数
+
+
+TracePrint "开始运行"
+
+
+If 模式 = 0 Then 
+    Call 重复战斗()
+    Delay 1500
+    If 自动换岗 = true Then 
+        ShowMessage "自动换岗"
+        Call  基建每日()
+    End If
+
+ElseIf 模式 = 1 Then
+    If 账号个数 <> 密码个数 Then 
+        ShowMessage "账号密码数不匹配"
+        EndScript
+    End If
+    星期 = DateTime.WeekDay()
+    If 小时 < 4 Then 
+        星期=星期-1
+    End If
+    ShowMessage "星期"&星期
+
+    Dim 给(3,20,6)
+    For j = 0 To 3
+        For k = 0 To 好友页
+            For i = 0 To 6
+                给(j,k,i)=False
+            Next
+        Next		
+    Next
+
+    For aa=开始账号数 to 30
+        aaa = aa mod 账号个数        
+        Call 登录(aaa)
+        
+        If 打剿灭 = true and aa <10 Then 
+            点击 778, 1474
+            Delay 1500
+            点击 81,805
+            Delay 1500
+            点击 293,1131
+            Delay 2000
+            KeepCapture
+            If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
+                点击 194, 1601
+                Delay 1500
+            End If	
+	
+            等待 开始1, 1500, 6, true
+            等待 开始2, 1500, 6, true
+            
+            Do
+                Delay 18000
+                KeepCapture 
+                If 判断(剿灭打完) = true Then 
+                    Delay 1000
+                    点击 90, 1217
+                    Delay 2000	
+                    KeepCapture
+                    If 判断(升级) = true Then 
+                        Delay 1000
+                        点击 升级(0),升级(1)
+                        Delay 2500
+                    End If
+                    等待 行动结束, 1500, 40, true
+                    Delay 3000
+                    Exit Do 
+                End If
+            Loop
+            点击 1018, 411
+            Delay 1000
+            点击 719, 133
+            Delay 1500
+            TracePrint "主页"	
+        End If
+        
+        Call 选图()
+        Call 重复战斗()
+        
+        Delay 1500
+        If 自动换岗 = true Then 
+            ShowMessage "自动换岗"
+            Call  基建每日()		
+        End If
+        Call 切换()
+    next
+End If
+EndScript
