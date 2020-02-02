@@ -7,10 +7,11 @@
 
 3.单账号请在选好关卡开启代理后运行
 
-https://github.com/Lancarus/a-mobile-anjian-script-for-arknight/blob/master/img/%E5%8D%95%E8%B4%A6%E5%8F%B7%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.png
+(https://github.com/Lancarus/a-mobile-anjian-script-for-arknight/blob/master/img/%E5%8D%95%E8%B4%A6%E5%8F%B7%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.png)
 
 4.多账号请输入好账号密码后（中间不要有空格，用半角逗号隔开，比如  账号1,账号2）
 
+(https://github.com/Lancarus/a-mobile-anjian-script-for-arknight/blob/master/img/%E5%A4%9A%E8%B4%A6%E5%8F%B7%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.png)
 
 
 —————————————分割线————————————————
@@ -21,15 +22,15 @@ https://github.com/Lancarus/a-mobile-anjian-script-for-arknight/blob/master/img/
 
 2.并没有做所有界面的图色识别，请在保障能够较流畅游戏的情况下使用本脚本
 
-2.脚本主要流程 【多账号（登录-签到-选图）】-重复打图-基建收菜-蹭好友party买信用商店-领日常周常-【切账号】
+3.脚本主要流程 【多账号（登录-签到-选图）】-重复打图-基建收菜-蹭好友party买信用商店-领日常周常-【切账号】
 
-2.默认最后一个建造站使用无人机
+4.默认最后一个建造站使用无人机
 
-3.干员按技能顺序上，如果追求基建效率请手操
+5.干员按技能顺序上，如果追求基建效率请手操
 
-4.无法控制次数（多账号模式每日1次剿灭除外），一直打到没有理智为止
+6.无法控制次数（多账号模式每日1次剿灭除外），一直打到没有理智为止
 
-5.剿灭有可能卡住
+7.剿灭有可能卡住
 
-6.多账号仅支持2467刷钱，无钱1-7
+8.多账号仅支持2467刷钱，无钱1-7
 
