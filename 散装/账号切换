@@ -1,8 +1,11 @@
 Sub 登录(a)
-    等待 开始唤醒, 1000, 3, true
-    Delay 1000
-    点击 310, 585
+	If 等待(开始唤醒, 1000, 30, false) = true Then 
+		点击(开始唤醒(0),开始唤醒(1))
+	End If
+	
     Delay 2000
+    等待 账号登录,1000,20,true
+    Delay 3000
     点击 424, 852
     Delay 700
     InputText 账号(a)
@@ -16,10 +19,9 @@ Sub 登录(a)
     点击 62,1823
     Delay 700
     点击 198, 957
-    
-    Delay 5000
+    Delay 10000
     ShowMessage "检测公告"
-    等待 (公告, 2000, 5, true)
+    等待 (公告, 2000, 10, true)
     If 等待(获得物资, 2000, 5, true) = true Then 
         ShowMessage "检测签到"
         等待 签到, 1000, 5, true
@@ -36,6 +38,17 @@ Sub 登录(a)
             Delay 1000
             点击 958, 1853
             Delay 1000
+        ElseIf 判断(活动收集) = true Then
+        	ShowMessage "活动"
+            点击 416,641
+            点击 402,892
+            点击 401,1193
+            点击 403,1493
+            Delay 5000
+            等待 获得物资, 1000, 5, true
+            Delay 1000
+        	点击 活动收集(0), 活动收集(1)
+        	Delay 2000
         End If
     End If	
 	
@@ -50,6 +63,7 @@ Sub 登录(a)
     Delay 2000 
     点击 1014, 122
     Delay 2000
+    等待 主页, 2000, 15, false
     TracePrint "主页"
 End Sub
 
