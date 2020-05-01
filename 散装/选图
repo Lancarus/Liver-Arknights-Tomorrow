@@ -1,41 +1,52 @@
-Sub 选图()
-    If 星期 = 2 or 星期 = 4 Then 
-        每局时间=2
-	
-        //	If aa \ 10 =0 0 Then 
-        //		TracePrint "打一次剿灭"
-        //	End If
+Sub 选图(a)
+	等待 主页, 1000, 15, false
+    If a = 0 Then 
+        ShowMessage "星期" & 星期 & "打龙门币_CE-  5"
+        每局时间 = 2
         点击 778, 1474
         Delay 1500
         点击 87,350
         Delay 1500
-        点击 535,1075
+        If 星期 = 2 or 星期 = 4 Then         
+            点击 535,1075            
+        ElseIf 星期 = 6 or 星期 = 7 Then           
+            点击 471,1475            
+        End If
         Delay 1500
         点击 806,1407
         Delay 1500
-        KeepCapture
-        If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
-            点击 194, 1601
-            Delay 1500
-        End If
-    ElseIf 星期 = 6 or 星期 = 7 Then
-        每局时间=2
+    ElseIf a > 26 and a<35 Then
+        Dim ik=a-27
         点击 778, 1474
         Delay 1500
-        点击 87,350
+        点击 93,590
         Delay 1500
-        点击 471,1475
+        TracePrint ik
+        Dim ki=359 + (ik \ 2) * 402
+        TracePrint ki
+        点击 (336,ki)
         Delay 1500
-        点击 806,1407
-        Delay 1500
-        KeepCapture 
-	
-        If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
-            点击 194, 1601
+        If ik mod 2 = 0 Then 
+            点击 407,577
+            Delay 1500
+        ElseIf ik mod 2 = 1 Then 
+            点击 701,1279
             Delay 1500
         End If
-    Else 
-        每局时间=1
+    ElseIf a > 34 and a < 38 Then
+    	点击 871, 1669
+    	Delay 6000
+    	点击 292, 1365
+    	Delay 3000
+    	If a = 35 Then 
+    	点击 291,1157
+    	ElseIf a = 36 Then
+    	点击 515,1393
+    	ElseIf a = 37 Then
+    	点击 738,1540
+    	End If
+    	Delay 1500
+    Else        
         点击 778, 1474
         Delay 1500
         点击 397,260
@@ -43,34 +54,225 @@ Sub 选图()
 	
         For 6		
             点击 73,1471
-            Delay 1500
+            Delay 2500
         Next
-        点击 73, 1766
-        Delay 1500
+        
+        If a = 9 Then
+            ShowMessage "星期"&星期&"打绿石头_  1-  7"
+            每局时间=1
+            
 	
-        For 3
-            Swipe 420,834,356,1568,800
-        Next
-        Delay 200
-        点击 401,1656
-        Delay 1500
-        点击 403,1259
-        Delay 1500
-        点击 404,1237
-        Delay 1500
-        点击 566,1122
-        Delay 1500
-        点击 559,1306
-        Delay 1500
-        点击 742,1122
-        Delay 1500
-        点击 738,1268
-        Delay 1500
-        KeepCapture 
+            点击 73, 1766
+            Delay 2500
 	
-        If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
-            点击 194, 1601
+            For 4
+                Swipe 420, 634, 356, 1568, 50
+                Delay 100
+            Next
+            Delay 900
+            点击 401,1656
             Delay 1500
-        End If
+            点击 403,1259
+            Delay 1500
+            点击 404,1237
+            Delay 1500
+            点击 566,1122
+            Delay 1500
+            点击 559,1306
+            Delay 1500
+            点击 742,1122
+            Delay 1500
+            点击 738,1268
+            Delay 1500
+        ElseIf a = 2 or a = 4 or a = 6 or a = 11 or a = 12 or a = 18 or a = 22 Then
+            For 4'第四章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe 420, 634,  356, 1568,50
+                Delay 100
+            Next
+            Delay 900
+            If a = 22 Then 
+                ShowMessage "星期"&星期&"打糖        _  4-  2"
+                点击 402,1171
+                Delay 1500
+                每局时间=2
+            Else 
+            	
+                点击 401,1764
+                Delay 1500
+                If a = 12 Then 
+                    ShowMessage "星期" & 星期 & "铁        _S4-  1"
+                    每局时间 = 2
+                Else 
+                    点击 397,1348's4-3
+                    Delay 1500
+                    点击 565, 1061
+                    Delay 1500
+                    If a = 18 Then 
+                        ShowMessage "星期" & 星期 & "醇        _  4-  4"
+                        每局时间 = 2
+                    Else 
+                        点击 700,1162
+                        Delay 1500
+                        If a = 11 Then 
+                            ShowMessage "星期" & 星期 & "酮        _  4-  5"
+                            每局时间 = 2
+                        Else 
+                            点击 427,1344's4-4
+                            Delay 1500
+                            点击 428,1188
+                            Delay 1500
+                            点击 428,1196'4-6
+                            Delay 1500
+                            点击 564,1082
+                            Delay 1500
+                            If a = 4 Then 
+                                ShowMessage "星期" & 星期 & "锰        _  4-  7"
+                                每局时间 = 2
+                            Else 
+                                点击 693,1143
+                                Delay 1500
+                                If a = 6 Then 
+                                    ShowMessage "星期" & 星期 & "研磨石_  4-  8"
+                                    每局时间 = 2
+                                Elseif a=2 
+                                    点击 563,1084
+                                    Delay 1500
+                                    ShowMessage "星期" & 星期 & "海胆    _  4-  9"
+                                    每局时间 = 2
+                                End If
+                            End If
+                        End If
+                    End If
+                End If	
+            End If
+//        ElseIf a=15 Then
+//            For 4'第四章
+//                点击 73, 1766
+//                Delay 2500
+//            Next
+//            For 4
+//                Swipe  356, 1568,420, 634, 50
+//                Delay 100
+//            Next
+//            Delay 900
+//            每局时间 = 2
+//            点击 561, 956
+//            ShowMessage "星期" & 星期 & "装置    _  4-10"
+//            Delay 1500
+        ElseIf a=3 Then
+            For 2'第二章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  356, 1568,420, 634, 50
+                Delay 100
+            Next
+            Delay 900
+            ShowMessage "星期" & 星期 & "海胆    _  2-10"
+            每局时间 = 2
+            点击 428,897
+            Delay 1500
+        ElseIf a=5 Then
+            For 3'第三章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  420, 634,356, 1568, 50
+                Delay 100
+            Next
+            Delay 900
+            ShowMessage "星期" & 星期 & "锰        _  3-  2"
+            每局时间 = 2
+            点击 572,1368
+            Delay 1500
+        ElseIf a=10 Then
+            For 3'第三章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  420, 634,356, 1568, 50
+                Delay 100
+            Next
+            Delay 900
+            ShowMessage "星期" & 星期 & "酮        _  3-  1"
+            每局时间 = 2
+            点击 550,864
+            Delay 1500
+        ElseIf a=7 Then
+            For 3'第三章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  420, 634,356, 1568, 50
+                Delay 100
+            Next
+            Delay 900
+            ShowMessage "星期" & 星期 & "研磨石_  3-  3"
+            每局时间 = 2
+            点击 572,1746
+            Delay 1500
+        ElseIf a=25 Then
+            For 3'第三章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  356, 1568,420, 634, 50
+                Delay 100
+            Next
+            Delay 900
+            ShowMessage "星期" & 星期 & "炽合金_S3-  6"
+            每局时间 = 2
+            点击 447,945
+            Delay 1500
+        ElseIf a = 20 Then
+            For 2'第二章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  420, 634, 356, 1568, 50
+                Delay 100
+            Next
+            Delay 900
+            点击 561,1903
+            Delay 1500
+            点击 567,1203
+            Delay 1500
+            点击 563,1193
+            Delay 1500
+            点击 424,1107
+            Delay 1500
+            点击 428,1194
+            Delay 1500
+            点击 569,1367
+            Delay 1500
+            点击 572,1195
+            Delay 1500
+            点击 412,1083
+            Delay 1500
+            点击 428,1217
+            Delay 1500
+            点击 426,1360
+            Delay 1500
+            点击 430, 1231
+            Delay 1500
+            ShowMessage "星期" & 星期 & "酯        _  2-  6"
+            每局时间 = 1
+        End If   		
     End If
+    KeepCapture
+    If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
+        点击 194, 1601
+        Delay 1500
+    End If
+    
 End Sub
