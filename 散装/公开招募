@@ -1,0 +1,154 @@
+sub 选tag()
+    Dim result() ,re()
+    
+    result = rank()
+    re=result(3)
+    TracePrint zm.VarInfo(result)
+    If result(0) > 5.5 Then 
+        ShowMessage "有标签" & tag(0) & tag(1) & tag(2) & tag(3) & tag(4) & ",有资深标签,等待自己选择"
+        点击 返回(0), 返回(1)
+        delay 1500
+    ElseIf result(0) = 4.2 Then
+        ShowMessage "有标签" & tag(0) & tag(1) & tag(2) & tag(3) & tag(4) & ",赌小车"
+        Delay 1000
+        For 2
+            点击 856, 680
+            Delay 300
+        Next
+        For 5
+            点击 860,917
+            Delay 300
+        Next
+        For Each i In re
+            If i>-1 Then 
+                Tap tag位置(i * 2), tag位置(i * 2 + 1)
+                Delay 300
+            End If    	
+        Next
+        点击 208,1459
+        Delay 2500
+    ElseIf result(0) < 4 Then
+        If 判断(刷新标签) = true Then 
+            ShowMessage "有标签" & tag(0) & tag(1) & tag(2) & tag(3) & tag(4) &",无高级组合,刷新标签"
+            点击 刷新标签(0), 刷新标签(1)
+            Delay 1000
+            点击 290, 1259
+            Delay 3500
+            zm.TableClear(result)
+            Call 公招()
+            Exit Sub 
+        ElseIf result(0) = 3 Then
+            For 8
+                点击 856, 680
+                Delay 300
+            Next
+            ShowMessage "有标签" & tag(0) & tag(1) & tag(2) & tag(3) & tag(4) & ",无高级组合,选择三星"
+            For Each i In re
+                If i>-1 Then 
+                    tap tag位置(i * 2),tag位置(i * 2+1)
+                    Delay 300
+                End If
+            Next
+            点击 208,1459
+            Delay 2500
+        Else 
+            ShowMessage "有标签" & tag(0) & tag(1) & tag(2) & tag(3) & tag(4) & ",选择" & result(1) & "tag,欧皇出" & result(2)
+            For 8
+                点击 856, 680
+                Delay 300
+            Next
+            For Each i In re
+                If i>-1 Then 
+                    Tap tag位置(i * 2), tag位置(i * 2 + 1)
+                    Delay 300
+                End If 	
+            Next
+            点击 208,1459
+            Delay 2500
+        End If
+    Else
+        ShowMessage "有标签" & tag(0) & tag(1) & tag(2) & tag(3) & tag(4) & ",选择" & result(1) & "tag,有概率出" & result(2)
+        For 8
+            点击 856, 680
+            Delay 300
+        Next
+        for Each i In re
+            If i>-1 Then 
+                Tap tag位置(i * 2), tag位置(i * 2 + 1)
+                Delay 300
+            End If    	
+        Next
+        点击 208,1459
+        Delay 2500
+    End If    
+End sub
+
+
+Function rank()
+    Dim j,k
+    Dim arr(),op(),num,arr1()
+    Dim res,r()
+    Dim n=0	
+    
+    For i = 0 To 4
+        If tag(i) = "高级资深干员" Then 
+            r = {6, "高姿", "高姿", i}
+            rank=r
+            Exit function
+        ElseIf tag(i)="资深干员" Then 
+            r = {5.9, "资深", "资深", i}
+            rank=r
+            Exit Function
+        ElseIf tag(i) = "新手" Then
+        	
+        Else 
+            res=-1
+            For Each 组合名 , 组合数组 In 保底["单tag"]		
+                res=zm.ArraySearch(组合数组,tag(i))
+                If res =1 Then 
+                    TracePrint i,tag(i),组合数组(0),组合数组(2)	
+                    arr(n) = 组合数组(0)
+                    op = zm.ArrayInsert(op, Array(组合数组(0),组合名,组合数组(2),{i,-1,-1}))
+                    n=n+1
+                    Exit for 
+                End If
+            Next
+            res=-1
+            For Each 组合名 , 组合数组 In 保底["双tag"]
+                res = zm.ArraySearch(组合数组, tag(i))
+                If res = 1 Then 
+                	TracePrint UBound(tag)
+                    j=zm.ArraySearch(tag, 组合数组(2))
+                    If j > -1 Then 
+                        TracePrint i,tag(i),j,tag(j),组合数组(0),组合数组(3)
+                        arr(n) = 组合数组(0)        			
+                        op = zm.ArrayInsert(op, Array(组合数组(0),组合名,组合数组(3),{i,j,-1}))
+                        n=n+1
+                    End If        	
+                End If
+            Next
+            res=-1
+            For Each 组合名 , 组合数组 In 保底["三tag"]
+                res = zm.ArraySearch(组合数组, tag(i))
+                If res = 1 Then 
+                    j = zm.ArraySearch(tag, 组合数组(2))
+                    k=zm.ArraySearch(tag, 组合数组(3))
+                    If j > -1 and k > -1 Then 
+                        TracePrint i,tag(i),j,tag(j),k,tag(k),组合数组(0),组合数组(4)
+                        arr(n) = 组合数组(0)
+                        op = zm.ArrayInsert(op, Array(组合数组(0),组合名,组合数组(4),{i,j,k}))
+                        n=n+1
+                    End If        	
+                End If
+            Next
+        End If
+    Next
+    If arr(0) <> null Then 
+        arr1 = Clone(arr)
+        zm.ArraySort(arr,true)
+        r = op(zm.arraysearch(arr1, arr(0)))
+    Else 
+        r={3,"三星","三星",{1,-1,-1}}
+    End If
+    rank=r
+End Function
