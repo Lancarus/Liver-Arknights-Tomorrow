@@ -226,7 +226,83 @@ Sub 好友交流()
     Loop
 End Sub
 
+Sub 制造站选干员(a)
+	Dim 干员列表
+	Dim n=0
+	Dim aa=a
+	点击 113, 488
+    Delay 2500
+    点击 67, 766
+    Delay 1000
+    点击 62, 1773
+    Delay 4000
+    点击 113, 488
+    Delay 1500
+	干员列表 = 识别干员()
+    For k = 5 To 0 step -1
+        If n < 3 Then 
+            For j = 0 To 5
+                For i = 0 To 1
+                    If 干员列表(i, j) = k Then 
+                        If k > 3 and k <> aa Then 
+//                            TracePrint i,j,k
+                        Else
+                            点击 776 - 421 * i, 739 + 216 * j
+                            n = n + 1
+                            Delay 500
+//                            TracePrint i,j,k,n
+                        End If
+                    End If
+                    If n > 2 Then 
+                        Exit for
+                    End If
+                Next
+                If n > 2 Then 
+                    Exit for
+                End If
+            next
+        End If
+    Next
+	Delay 500
+    点击 62, 1773
+    Delay 2500
+	
+End Sub
 
+Function 识别干员()
+	Dim i,j
+	Dim arr(1,5)
+	Dim 点12,点5,点6
+	KeepCapture 
+	For i = 0 To 1
+		For j = 0 To 5
+			点12 = CmpColor(679 - 421 * i, 661 + 216 * j, "3D3E3E|FEFFFF", 0.9)
+			点5=CmpColor(630 - 421 * i, 666 + 216 * j, "626464|FEFFFF", 0.9)
+			点6 = CmpColor(630 - 421 * i, 661 + 216 * j, "3D3E3E|FEFFFF", 0.9)
+			arr(i,j)=0
+			If 点12 = 0 Then '黑
+			If 点5 = 0 Then 
+						arr(i, j) = 1'15加成
+                ElseIf 点5 = 1 Then
+                    If 点6 = 0 Then'黑 
+                        If CmpColor(662 - 421 * i, 648 + 216 * j, "000617", 0.9) > -1 Then 
+                            arr(i, j) = 4'exp加成
+                        ElseIf CmpColor(646 - 421 * i, 662 + 216 * j, "14CFDD", 0.9) > -1 Then
+                            arr(i, j) = 5'重金属加成
+                        End If
+                    ElseIf 点6 = 1 Then'白						
+                        arr(i, j) = 3'25加成
+                    End If
+				
+                End If
+            ElseIf 点12 = 1 Then
+                arr(i, j) = 2	'一圈白			
+            End If
+          
+		Next
+	Next
+	识别干员=arr
+End Function
 
 
 
@@ -284,26 +360,30 @@ Sub 基建每日()
         点击(房间(2*建造站),房间(2*建造站+1))
         Delay 1500
         点击(房间(2*建造站),房间(2*建造站+1))
-        Delay 1500
+        Delay 2500
         点击 159, 121
-        Delay 1500	
-        For i= 1 to 建造站数量
-            点击(775+123-i*123,178)
-            Call 厂换干员()
+        Delay 2500	
+        For i = 1 To 建造站数量
+        	Delay 1500
+            点击 775 + 123 - i * 123, 178
+            Delay 500
+            
             If i = 建造站数量 Then 
+            	Call 制造站选干员(5)
                 点击 271, 1843
                 Delay 1500
                 点击 572,1440
                 Delay 500
                 点击 202,1431
                 Delay 1500
+            Else 
+            	Call 制造站选干员(4)
             End If
             点击 771, 1463
-            Delay 500
+            Delay 1500
             点击 173,1433
-            Delay 2000
-        Next
-	
+            Delay 2500
+        Next	
         点击 1010, 116
         Delay 1500
         点击 1010, 116
