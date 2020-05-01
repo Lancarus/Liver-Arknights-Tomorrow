@@ -1,7 +1,7 @@
 SetScreenScale 1080, 1920, 0
 SetControlBarPos 0.3,0,0
 dim 包名 = Sys.GetFront()
-//TracePrint 包名
+TracePrint 包名
 //ShowMessage 包名
 Dim IntX,IntY
 Randomize
@@ -11,8 +11,8 @@ Randomize
 
 Dim 星期,小时
 小时 = datetime.Hour()
-
-
+Dim 轮次,目前账号
+轮次=0
 Dim 模式=cint(readuiconfig("模式"))
 Dim 碎石=readuiconfig("碎石")
 Dim 嗑药=readuiconfig("嗑药")
@@ -22,21 +22,25 @@ Dim 开始账号数=cint(readuiconfig("几号"))
 Dim 打剿灭=readuiconfig("打剿灭")
 Dim 好友页=cint(readuiconfig("好友数"))\4+1
 Dim 自公招=ReadUIConfig("自动公招")
-
+Dim 点潜能=ReadUIConfig("点潜能")
+Dim 延时=cint(readuiconfig("延时"))
+Dim 图
+Dim 识别
+Dim 卷2,白票
 If 自公招 = true Then 
 
     Import "zm.luae" //导入插件,只需执行一次
-    zm.Init  //初始化插件,只需执行一次	
+	zm.Init  //初始化插件,只需执行一次	
     Dim ret,tags,tag(),t,tag位置()
     Dim ub=0
-    If Not zm.OcrBaiDuInit("你的百度云app id", "你的百度云app key ","https://aip.baidubce.com/rest/2.0/ocr/v1/general") Then
+    If Not zm.OcrBaiDuInit("ReadUIConfig("ocrid")","ReadUIConfig("ocrkey")","https://aip.baidubce.com/rest/2.0/ocr/v1/general") Then
         TracePrint "初始化设置百度云识别失败"
         EndScript
     End If
     PutAttachment "/sdcard/","tags.txt"
     Dim 保底=Encode.JsonToTable(zm.FileRead ("/sdcard/tags.txt"))
     Dim 标签={"新手","资深干员","高级资深干员","近战位","远程位","近卫干员","狙击干员","重装干员","医疗干员","辅助干员","术师干员","特种干员","先锋干员","控场","爆发","治疗","支援","费用回复","输出","生存","群攻","防护","减速","削弱","快速复活","位移","召唤","支援机械"}
-    //TracePrint UBound(标签)	
+//    //TracePrint UBound(标签)	
 
 End If
 
@@ -52,7 +56,6 @@ Dim 贸易站=3*cint(readuiconfig("贸易站楼层"))+cint(readuiconfig("贸易�
 
 Dim 发电站数量=0
 dim 发电站()
-
 For n = 1 To 3
     For m = 1 To 3		
         If ReadUIConfig(n & "0" & m) = true Then 			
@@ -64,27 +67,33 @@ For n = 1 To 3
 Next
 
 //TracePrint 建造站数量,建造站,贸易站数量,贸易站,发电站数量
-Dim aaa
 
+Dim 开始游戏=array(63,956,"63|956|02D4FA,67|961|02D8FF,74|938|02D8FF")
+Dim 登录界面1=array(157,859,"157|859|E9E9E9,46|895|3F3F3F")
 Dim 主页=array(1019,50,"1001|75|FFFFFF,658|1406|1F62FE,373|1309|E5BE4A,213|478|414141")
-Dim 行动结束=array(40,1819,"139|85|FFFFFF,45|664|FFFFFF,73|842|01CCF0,72|839|02CAEF")
+Dim 行动结束=array(40,1819,"308|499|FFF53F,348|1275|0098F2,124|531|FFFFFF")
+Dim 剿灭结束=array(40,1819,"278|90|FFFFFF,120|530|FFFFFF,340|1267|0032A1")
 Dim 开始1=array(123,1738,"129|1761|D79500,50|1780|232323,55|1428|373737")
 Dim 开始2=array(122,1741,"122|1741|0046C1,501|1577|0046C1,437|1658|FFFFFF,1020|162|313131")
 Dim 理智用完=array(217,1183,"198|1169|313131,224|1631|313131,539|544|FAFBFB,211|1737|FCFCFC")
 Dim 有药=array(217,1625,"887|1056|FFFFFF,232|1631|313131,646|977|E9AB1F")
 Dim 换工作=array(321,1364,"338|1263|FFFFFF,338|1384|141477,295|1278|FFFFFF,579|1340|333333")
-Dim 基建=array(1031,1094,"1031|1094|FF92DC,1013|1376|47ECCB,191|308|F1F0F1,747|1518|303535")
+Dim 基建=array(1031,1094,"1016|96|313131,769|235|FFFFFF,926|268|FFFFFF,1035|1098|FF92DC")
+Dim 宿舍进驻=array(1040,1855,"1040|1855|313131,844|1259|FFFFFF,677|173|D5D5D5")
 Dim 好友界面=array(1031,1094,"839|56|CACACA,882|230|313131,878|1095|00DAFB,889|390|DC9800")
 Dim 升级=array(402,249,"402|249|FFFFFF,645|245|FFFFFF,553|1019|FFFFFF,361|238|131313")
 Dim 返回=array(1012,194,"1012|194|313131,1024|405|D8D8D8,1002|551|313131")
 Dim 剿灭打完=array(614,1419,"614|1419|FFFFFF,508|1399|0277FA,547|238|DC9800")
 Dim 获得物资=array(114,958,"958|961|969796,992|1030|9B9C9C,105|953|76868A,143|968|292929")
-Dim 开始唤醒=array(58,1389,"49|1307|585858,306|666|E8E8E8,541|1069|181821,145|961|E9E9E9")
-Dim 公告=array(994,1858,"994|1858|C8C8C8,893|1846|191919,929|92|070707,118|1785|CFD0D0")
+Dim 开始唤醒=array(58,1389,"49|1307|585858,308|729|E8E8E8,541|1069|181821,145|961|E9E9E9")
+Dim 账号登录=array(308,729,"308|729|565656,318|1415|565656,216|638|E9E9E9")
+Dim 公告=array(994,1858,"994|1858|C8C8C8,893|1846|191919,929|92|070707,252|1852|604D15")
 Dim 签到=array(956,1804,"956|1804|595959,103|1776|00B8F4,95|1245|313131,976|98|00B8F4")
 Dim 活动签到=array(957,1851,"957|1851|BEBEBE,949|1826|595959,112|1844|414141")
+Dim 活动收集=array(929,1849,"929|1849|BFBFBF,956|1854|595959,89|1835|242424")
 Dim 交流结束=array(1014,85,"930|46|0062CE,903|542|0062CE,821|81|FFFFFF")
 Dim 刷新标签=array(467,1458,"467|1458|DC9800,206|1526|DC9800,349|313|E8E8E8")
+Dim 任务界面=array(1020,1022,"1023|401|D8D8D8,1019|82|313131,953|37|FFFFFF,1038|624|FFFFFF")
 
 
 Dim 房间=array(597,95,603,419,607,727,436,31,431,257,427,569,260,93,260,425,271,729)
@@ -94,6 +103,7 @@ Dim 房间=array(597,95,603,419,607,727,436,31,431,257,427,569,260,93,260,425,27
 Dim 账号=字符串转数组(ReadUIConfig("账号")&",")
 
 Dim 密码=字符串转数组(ReadUIConfig("密码")&",")
+
 Dim 账号个数=UBound(账号)+1
 Dim 密码个数=UBound(密码)+1
 TracePrint 账号个数,密码个数
@@ -105,10 +115,15 @@ For j = 0 To 3
         Next
     Next		
 Next
+TracePrint "开始"
 
-TracePrint "开始运行"
 
 
+
+
+
+
+////////////////
 If 模式 = 0 Then 
     Call 重复战斗()
     Delay 1500
@@ -128,17 +143,37 @@ ElseIf 模式 = 1 Then
     End If
     星期 = DateTime.WeekDay()
     If 小时 < 4 Then 
-        星期=星期-1
+        星期 = 星期 - 1
+        If 星期 = 0 Then 
+        	星期 = 7
+        	
+        End If
     End If
-    ShowMessage "星期"&星期
+    图=cint(ReadUIConfig("周"&星期))
+    TracePrint "星期"&星期&"选图"&图
+    KeepCapture
+    If sys.AppIsFront("com.hypergryph.arknights")=False and 判断(登录界面1)=False Then 
+        RunApp "com.hypergryph.arknights"
+        Delay 20000
+        等待 开始游戏, 2000, 60, true
+        Delay 10000
+        等待 登录界面1,2000, 30, false
+    End If
 
-    
-    For aa=开始账号数 to 30
-        aaa = aa mod 账号个数
-        
-        Call 登录(aaa)
+    For aa=开始账号数 to 50
+        目前账号 = aa mod 账号个数
+        轮次 = aa \ 账号个数
+        If DateTime.Hour() = 3 Then 
+        	For 600
+        		Delay 6000
+        	Next
+        End If
+        Call 登录(目前账号)
         If 自公招 = true Then 
             Call 自动公招()
+        End If
+        If 点潜能 = true Then 
+        	Call 自动潜能()
         End If
         If 打剿灭 = true and aa <10 Then 
             点击 778, 1474
@@ -147,47 +182,46 @@ ElseIf 模式 = 1 Then
             Delay 1500
             点击 293,1131
             Delay 2000
-            KeepCapture
-            If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
-                点击 194, 1601
-                Delay 1500
-            End If	
-	
-            等待 开始1, 1500, 6, true
-            等待 开始2, 1500, 6, true
-            Do
-                Delay 18000
-                KeepCapture 
-                If 判断(剿灭打完) = true Then 
-                    Delay 1000
-                    点击 90, 1217
-                    Delay 2000
-	
-                    KeepCapture
-                    If 判断(升级) = true Then 
-                        Delay 1000
-                        点击 升级(0),升级(1)
-                        Delay 2500
-                    End If
-                    等待 行动结束, 1500, 40, true
-                    Delay 3000
-                    Exit Do 
-                End If
-            Loop
+            Call 重复战斗()
+          	Delay 1500
             点击 1018, 411
             Delay 1000
             点击 719, 133
-            Delay 1500
+            Delay 3000
+            等待 主页, 1000, 5, false
             TracePrint "主页"
-	
+			
         End If
-        Call 选图()
+        Call 选图(图)
         Call 重复战斗()
         Delay 1500
         If 自动换岗 = true Then 
             ShowMessage "自动换岗"
             Call  基建每日()		
         End If
+
+        Call 切换()
+    Next
+ElseIf 模式 = 2 Then
+	 If 账号个数 <> 密码个数 Then 
+        ShowMessage "账号密码数不匹配"
+        EndScript
+    End If
+    
+    For aa=开始账号数 to 30
+        目前账号 = aa mod 账号个数
+        
+        Call 登录(目前账号)
+        If 自公招 = true Then 
+            Call 自动公招()
+        End If
+        If 点潜能 = true Then 
+        	Call 自动潜能()
+        End If
+      
+        
+        Delay 1500
+       
 
         Call 切换()
     next
@@ -204,7 +238,23 @@ EndScript
 Sub 重复战斗()
     Do
         Rem 标记
-        等待 开始1, 1500, 6, true
+        If 等待(开始1, 1500, 6, false) = true Then 
+            KeepCapture 
+            If CmpColor(53, 916, "FFFFFF", 0.95) > -1 Then 
+            	TracePrint "111"
+                ShowMessage "剿灭打完"
+                Exit Do
+            Else 
+                KeepCapture
+                If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
+                    点击 194, 1601
+                    Delay 1500
+                End If
+                点击 开始1(0),开始1(1)       
+            End If
+        End If
+        
+       
         Delay 1500
         KeepCapture
         If 判断(理智用完) = true Then 
@@ -228,59 +278,75 @@ Sub 重复战斗()
             Delay 60000
         Next
         KeepCapture 
-        If 判断(剿灭打完) = true Then 
-            Delay 1000
-            点击 90, 1217
-            Delay 2000
-        End If
-        KeepCapture
+         
         If 判断(升级) = true Then 
             Delay 1000
             点击 升级(0),升级(1)
             Delay 1500
+        End If 
+        If 判断(剿灭打完) = true Then 
+            Delay 1000
+            点击 90, 1217
+            Delay 2000
+            等待 剿灭结束, 1000, 3, true
+        Else 
+        	等待 行动结束, 2000, 60, true
         End If
-        等待 行动结束, 1500, 40, true
+        KeepCapture  
         Delay 3000
     Loop
+    Delay 1000
 End Sub
 
-Sub 选图()
-    If 星期 = 2 or 星期 = 4 Then 
-        每局时间=2
-	
-        //	If aa \ 10 =0 0 Then 
-        //		TracePrint "打一次剿灭"
-        //	End If
+Sub 选图(a)
+	等待 主页, 1000, 15, false
+    If a = 0 Then 
+        ShowMessage "星期" & 星期 & "打龙门币_CE-  5"
+        每局时间 = 2
         点击 778, 1474
         Delay 1500
         点击 87,350
         Delay 1500
-        点击 535,1075
+        If 星期 = 2 or 星期 = 4 Then         
+            点击 535,1075            
+        ElseIf 星期 = 6 or 星期 = 7 Then           
+            点击 471,1475            
+        End If
         Delay 1500
         点击 806,1407
         Delay 1500
-        KeepCapture
-        If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
-            点击 194, 1601
-            Delay 1500
-        End If
-    ElseIf 星期 = 6 or 星期 = 7 Then
-        每局时间=2
+    ElseIf a > 26 and a<35 Then
+        Dim ik=a-27
         点击 778, 1474
         Delay 1500
-        点击 87,350
+        点击 93,590
         Delay 1500
-        点击 471,1475
+        TracePrint ik
+        Dim ki=359 + (ik \ 2) * 402
+        TracePrint ki
+        点击 (336,ki)
         Delay 1500
-        点击 806,1407
-        Delay 1500
-        KeepCapture 	
-        If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
-            点击 194, 1601
+        If ik mod 2 = 0 Then 
+            点击 407,577
+            Delay 1500
+        ElseIf ik mod 2 = 1 Then 
+            点击 701,1279
             Delay 1500
         End If
-    Else 
-        每局时间=1
+    ElseIf a > 34 and a < 38 Then
+    	点击 871, 1669
+    	Delay 6000
+    	点击 292, 1365
+    	Delay 3000
+    	If a = 35 Then 
+    	点击 291,1157
+    	ElseIf a = 36 Then
+    	点击 515,1393
+    	ElseIf a = 37 Then
+    	点击 738,1540
+    	End If
+    	Delay 1500
+    Else        
         点击 778, 1474
         Delay 1500
         点击 397,260
@@ -288,42 +354,237 @@ Sub 选图()
 	
         For 6		
             点击 73,1471
-            Delay 1500
+            Delay 2500
         Next
-        点击 73, 1766
-        Delay 1500
+        
+        If a = 9 Then
+            ShowMessage "星期"&星期&"打绿石头_  1-  7"
+            每局时间=1
+            
 	
-        For 3
-            Swipe 420,834,356,1568,800
-        Next
-        Delay 200
-        点击 401,1656
-        Delay 1500
-        点击 403,1259
-        Delay 1500
-        点击 404,1237
-        Delay 1500
-        点击 566,1122
-        Delay 1500
-        点击 559,1306
-        Delay 1500
-        点击 742,1122
-        Delay 1500
-        点击 738,1268
-        Delay 1500
-        KeepCapture 
+            点击 73, 1766
+            Delay 2500
 	
-        If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
-            点击 194, 1601
+            For 4
+                Swipe 420, 634, 356, 1568, 50
+                Delay 100
+            Next
+            Delay 900
+            点击 401,1656
             Delay 1500
+            点击 403,1259
+            Delay 1500
+            点击 404,1237
+            Delay 1500
+            点击 566,1122
+            Delay 1500
+            点击 559,1306
+            Delay 1500
+            点击 742,1122
+            Delay 1500
+            点击 738,1268
+            Delay 1500
+        ElseIf a = 2 or a = 4 or a = 6 or a = 11 or a = 12 or a = 18 or a = 22 Then
+            For 4'第四章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe 420, 634,  356, 1568,50
+                Delay 100
+            Next
+            Delay 900
+            If a = 22 Then 
+                ShowMessage "星期"&星期&"打糖        _  4-  2"
+                点击 402,1171
+                Delay 1500
+                每局时间=2
+            Else 
+            	
+                点击 401,1764
+                Delay 1500
+                If a = 12 Then 
+                    ShowMessage "星期" & 星期 & "铁        _S4-  1"
+                    每局时间 = 2
+                Else 
+                    点击 397,1348's4-3
+                    Delay 1500
+                    点击 565, 1061
+                    Delay 1500
+                    If a = 18 Then 
+                        ShowMessage "星期" & 星期 & "醇        _  4-  4"
+                        每局时间 = 2
+                    Else 
+                        点击 700,1162
+                        Delay 1500
+                        If a = 11 Then 
+                            ShowMessage "星期" & 星期 & "酮        _  4-  5"
+                            每局时间 = 2
+                        Else 
+                            点击 427,1344's4-4
+                            Delay 1500
+                            点击 428,1188
+                            Delay 1500
+                            点击 428,1196'4-6
+                            Delay 1500
+                            点击 564,1082
+                            Delay 1500
+                            If a = 4 Then 
+                                ShowMessage "星期" & 星期 & "锰        _  4-  7"
+                                每局时间 = 2
+                            Else 
+                                点击 693,1143
+                                Delay 1500
+                                If a = 6 Then 
+                                    ShowMessage "星期" & 星期 & "研磨石_  4-  8"
+                                    每局时间 = 2
+                                Elseif a=2 
+                                    点击 563,1084
+                                    Delay 1500
+                                    ShowMessage "星期" & 星期 & "海胆    _  4-  9"
+                                    每局时间 = 2
+                                End If
+                            End If
+                        End If
+                    End If
+                End If	
+            End If
+//        ElseIf a=15 Then
+//            For 4'第四章
+//                点击 73, 1766
+//                Delay 2500
+//            Next
+//            For 4
+//                Swipe  356, 1568,420, 634, 50
+//                Delay 100
+//            Next
+//            Delay 900
+//            每局时间 = 2
+//            点击 561, 956
+//            ShowMessage "星期" & 星期 & "装置    _  4-10"
+//            Delay 1500
+        ElseIf a=3 Then
+            For 2'第二章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  356, 1568,420, 634, 50
+                Delay 100
+            Next
+            Delay 900
+            ShowMessage "星期" & 星期 & "海胆    _  2-10"
+            每局时间 = 2
+            点击 428,897
+            Delay 1500
+        ElseIf a=5 Then
+            For 3'第三章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  420, 634,356, 1568, 50
+                Delay 100
+            Next
+            Delay 900
+            ShowMessage "星期" & 星期 & "锰        _  3-  2"
+            每局时间 = 2
+            点击 572,1368
+            Delay 1500
+        ElseIf a=10 Then
+            For 3'第三章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  420, 634,356, 1568, 50
+                Delay 100
+            Next
+            Delay 900
+            ShowMessage "星期" & 星期 & "酮        _  3-  1"
+            每局时间 = 2
+            点击 550,864
+            Delay 1500
+        ElseIf a=7 Then
+            For 3'第三章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  420, 634,356, 1568, 50
+                Delay 100
+            Next
+            Delay 900
+            ShowMessage "星期" & 星期 & "研磨石_  3-  3"
+            每局时间 = 2
+            点击 572,1746
+            Delay 1500
+        ElseIf a=25 Then
+            For 3'第三章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  356, 1568,420, 634, 50
+                Delay 100
+            Next
+            Delay 900
+            ShowMessage "星期" & 星期 & "炽合金_S3-  6"
+            每局时间 = 2
+            点击 447,945
+            Delay 1500
+        ElseIf a = 20 Then
+            For 2'第二章
+                点击 73, 1766
+                Delay 2500
+            Next
+            For 4
+                Swipe  420, 634, 356, 1568, 50
+                Delay 100
+            Next
+            Delay 900
+            点击 561,1903
+            Delay 1500
+            点击 567,1203
+            Delay 1500
+            点击 563,1193
+            Delay 1500
+            点击 424,1107
+            Delay 1500
+            点击 428,1194
+            Delay 1500
+            点击 569,1367
+            Delay 1500
+            点击 572,1195
+            Delay 1500
+            点击 412,1083
+            Delay 1500
+            点击 428,1217
+            Delay 1500
+            点击 426,1360
+            Delay 1500
+            点击 430, 1231
+            Delay 1500
+            ShowMessage "星期" & 星期 & "酯        _  2-  6"
+            每局时间 = 1
         End If
+   		
     End If
+    KeepCapture
+    If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
+        点击 194, 1601
+        Delay 1500
+    End If
+    
 End Sub
 Sub 登录(a)
-    等待 开始唤醒, 1000, 3, true
-    Delay 1000
-    点击 310, 585
+	If 等待(开始唤醒, 1000, 30, false) = true Then 
+		点击(开始唤醒(0),开始唤醒(1))
+	End If
+	
     Delay 2000
+    等待 账号登录,1000,20,true
+    Delay 3000
     点击 424, 852
     Delay 700
     InputText 账号(a)
@@ -337,9 +598,9 @@ Sub 登录(a)
     点击 62,1823
     Delay 700
     点击 198, 957
-    Delay 5000
+    Delay 10000
     ShowMessage "检测公告"
-    等待 (公告, 2000, 5, true)
+    等待 (公告, 2000, 10, true)
     If 等待(获得物资, 2000, 5, true) = true Then 
         ShowMessage "检测签到"
         等待 签到, 1000, 5, true
@@ -356,10 +617,19 @@ Sub 登录(a)
             Delay 1000
             点击 958, 1853
             Delay 1000
+        ElseIf 判断(活动收集) = true Then
+        	ShowMessage "活动"
+            点击 416,641
+            点击 402,892
+            点击 401,1193
+            点击 403,1493
+            Delay 5000
+            等待 获得物资, 1000, 5, true
+            Delay 1000
+        	点击 活动收集(0), 活动收集(1)
+        	Delay 2000
         End If
-    End If
-	
-	
+    End If	
 	
     等待 主页, 1000, 5, false
     ShowMessage "领邮件"
@@ -372,6 +642,7 @@ Sub 登录(a)
     Delay 2000 
     点击 1014, 122
     Delay 2000
+    等待 主页, 2000, 15, false
     TracePrint "主页"
 End Sub
 
@@ -387,7 +658,7 @@ End Sub
 
 Sub 宿舍换干员()
     点击 1032,1803
-    Delay 1500
+    Delay 2500
     点击 823,1569
     Delay 1500
     点击 724,726
@@ -399,36 +670,37 @@ Sub 宿舍换干员()
     点击 398,931
     Delay 300
     点击 745,1143
-    Delay 300
+    Delay 500
     点击 60,1777
-    Delay 1500
+    Delay 2500
     KeepCapture 
     If 判断(换工作) = true Then 
         Delay 500
         点击 换工作(0), 换工作(1)
-        Delay 1500
+        Delay 2500
     End If
     点击 1010, 116
-    Delay 1500
+    Delay 2500
+    等待 基建,1500,10,false
 End Sub
 
 Sub 厂换干员()
     点击 113, 488
-    Delay 1500
+    Delay 2500
     点击 67, 766
-    Delay 500
+    Delay 1000
     点击 62, 1773
-    Delay 1500
+    Delay 4000
     点击 113, 488
     Delay 1500
     点击 724,726
-    Delay 300
+    Delay 500
     点击 395,724
-    Delay 300
+    Delay 500
     点击 732,939
-    Delay 300
+    Delay 1000
     点击 62, 1773
-    Delay 1500
+    Delay 2500
 End Sub
 
 Sub 会客厅()
@@ -530,7 +802,7 @@ Sub 会客厅()
     点击 391,728
     Delay 300
     点击 54,1770
-    Delay 1500
+    Delay 2500
     KeepCapture
     If CmpColor(132,1205,"FFFFFF",0.9) > -1 Then '可以开party
         点击 127, 1017
@@ -555,7 +827,7 @@ Sub 给线索()
             TracePrint "选择线索"
             点击 632, 298
             Delay 1000
-            For 4
+            For 好友页
                 点击 59,1681
                 Delay 300
             Next
@@ -609,7 +881,7 @@ Sub 好友交流()
     Delay 1500
     点击 315,1272
     Delay 7000
-    等待 好友界面,1000,5,false
+    等待 好友界面,1000,15,false
     点击 745, 191
     Delay 1500
     点击 836, 1496
@@ -618,12 +890,12 @@ Sub 好友交流()
         KeepCapture 
         If CmpColor(92, 1829, "0658D1", 0.9) > -1 Then 
             点击 92, 1829
-            Delay 7000
+            Delay 10000
             i=i+1
         Else 
             Exit Do 
         End If
-    Loop until i>11
+    Loop until i>9
 End Sub
 
 Sub 基建每日()
@@ -631,46 +903,44 @@ Sub 基建每日()
     Delay 1000
     点击 804, 1035'基建
     Delay 5000
-    等待 基建,1000,7,false
+    等待 基建,1500,20,false
     点击 884, 1887'蓝色
     Delay 2000
     点击 40, 382
-    Delay 2000
-    点击 41, 663
-    Delay 2000
+    Delay 2500
+    点击 40, 382
+    Delay 2500
+    点击 40, 382
+    Delay 2500
     点击 32, 122
     Delay 1000
     点击 934,1853'红色
     Delay 2000
     点击 40, 382
-    Delay 2000
-    点击 41, 663
-    Delay 2000
-    点击 41, 663
-    Delay 2000
+    Delay 2500
+    点击 40, 382
+    Delay 2500
+    点击 40, 382
+    Delay 2500
     点击 32, 122
     Delay 1000
     /////////////////宿舍换干员
 	
     点击 616, 1184
-    Delay 2000
+    Delay 5000
     点击 670,97
-    Delay 1000
+    等待 宿舍进驻,1500,10,false
     Call 宿舍换干员()
     点击 461,1349
-    Delay 2000
+    等待 宿舍进驻,1500,10,false
     Call 宿舍换干员()
     点击 290,1201
-    Delay 2000
+    等待 宿舍进驻,1500,10,false
     Call 宿舍换干员()
-    Delay 1000
-    KeepCapture
-    If CmpColor(143, 1356, "333233", 0.9) > -1 Then 
-        ShowMessage "宿舍4"
+    
         点击 143, 1356
-        Delay 2000
+        等待 宿舍进驻,1500,10,false
         Call 宿舍换干员()
-    End If
     Delay 1000
     等待 基建,1000,3,false
     ////////////////////////制造厂
@@ -679,24 +949,29 @@ Sub 基建每日()
         点击(房间(2*建造站),房间(2*建造站+1))
         Delay 1500
         点击(房间(2*建造站),房间(2*建造站+1))
-        Delay 1500
+        Delay 2500
         点击 159, 121
-        Delay 1500	
-        For i= 1 to 建造站数量
-            点击(775+123-i*123,178)
-            Call 厂换干员()
+        Delay 2500	
+        For i = 1 To 建造站数量
+        	Delay 1500
+            点击 775 + 123 - i * 123, 178
+            Delay 500
+            
             If i = 建造站数量 Then 
+            	Call 制造站选干员(5)
                 点击 271, 1843
                 Delay 1500
                 点击 572,1440
                 Delay 500
                 点击 202,1431
                 Delay 1500
+            Else 
+            	Call 制造站选干员(4)
             End If
             点击 771, 1463
-            Delay 500
+            Delay 1500
             点击 173,1433
-            Delay 2000
+            Delay 2500
         Next	
         点击 1010, 116
         Delay 1500
@@ -710,19 +985,24 @@ Sub 基建每日()
         ShowMessage "贸易站"	
         点击(房间(2*贸易站),房间(2*贸易站+1))
         Delay 1500
-        点击 159, 121
+        点击(房间(2*贸易站),房间(2*贸易站+1))
+        Delay 1500
+        点击 176,115
+        Delay 1500
+        点击 176,115
         Delay 1500
         For i= 1 to 贸易站数量
             点击 (775 + 123 - i * 123, 178)
 		
-            Delay 1500
-            Do 
-                点击 448, 634
-                Delay 1400
-                KeepCapture
-            Loop Until CmpColor(448, 634, "F3AC00", 0.9) = -1
+            Delay 2000
+//            Do 
+//                点击 448, 634
+//                Delay 2000
+//                KeepCapture
+//            Loop Until CmpColor(448, 634, "F3AC00", 0.9) = -1
             ReleaseCapture
             Call 厂换干员()
+            Delay 1500
         Next 
 	
         点击 1010, 116
@@ -757,9 +1037,10 @@ Sub 基建每日()
     If 换发电站干员 = true Then 
         ShowMessage "发电站"
         For i = 1 To 发电站数量
-            点击(房间(2*发电站(i-1)),房间(2*发电站(i-1)+1))
-            点击 611,736
-            Delay 2000
+            点击 房间(2 * 发电站(i - 1)), 房间(2 * 发电站(i - 1) + 1)
+            Delay 1500
+            
+           
             If i=1 Then 
                 点击 633,109
                 Delay 1000
@@ -774,7 +1055,7 @@ Sub 基建每日()
             点击 737,744
             Delay 300
             点击 69,1779
-            Delay 1500
+            Delay 2500
             点击 1010, 116
             Delay 2500
         Next        
@@ -788,12 +1069,19 @@ Sub 基建每日()
     点击 827,1270
     Delay 1500
     点击 670,97
+    Delay 2500
+    点击 1033, 1801
+    Delay 2000
+    点击 305, 1258
     Delay 1500
     Call 宿舍换干员()
     //	点击 1010, 116
     Delay 1500
     ////////////////////好友交流
-    Call 好友交流()
+    If 轮次 < 2 or 模式=0 Then 
+    	 Call 好友交流()
+    End If
+   
 	
 	
     /////////////////////////信用商店
@@ -801,21 +1089,45 @@ Sub 基建每日()
         点击 1018, 400
         Delay 1500
         点击 683, 1797
-        Delay 2000
+        Delay 3000
         点击 919,1802
         Delay 1500
-        点击 1020,1530
-        等待 获得物资, 1000, 3, true
+        点击 1020, 1530
+        If 等待(获得物资, 1000, 3, false) = true Then 
+        	点击 获得物资(0), 获得物资(1)
+        	Delay 1500
+        	
+        End If
+        
+        
         Delay 1000
-	
+		KeepCapture
         For i = 0 To 1
             For j = 0 To 4
-                点击 (663-385*i,207+380*j)
+            	白票=((CmpColor(761 - 381 * i, 177 + 379.5 * j, "B7B7B7", 0.9) > -1) and (CmpColor(631 - 381 * i, 271 + 379.5 * j, "D5BDCE", 0.9) > -1)) 
+                卷2 = (CmpColor(674 - 381 * i, 106 + 379.5 * j, "FBB300", 0.9) > -1) and (CmpColor(633 - 381 * i, 116 + 379.5 * j, "25705F", 0.9) > -1)
+            	If 卷2 = true or 白票=true Then 
+            	点击 (663-381*i,207+380*j)
                 Delay 1500
                 点击 202,1377
                 Delay 1500
                 点击 919,1802
+                Delay 1500	
+            	End If
+            Next
+        Next
+
+        KeepCapture
+        For i = 0 To 1
+            For j = 0 To 4
+            	If CmpColor(539 - 381 * i, 71 + 380.5 * j, "585858", 0.9) > -1 Then 
+            	点击 (663-381*i,207+380*j)
                 Delay 1500
+                点击 202,1377
+                Delay 1500
+                点击 919,1802
+                Delay 1500	
+            	End If
             Next
         Next
     End If
@@ -828,25 +1140,26 @@ Sub 基建每日()
     点击 1018, 406
     Delay 1500
     点击 1024,1634
-    Delay 10000
-    点击 1014,1074'日常
+    等待 任务界面,1500,20,false
+    点击 1024,1074'日常
     Delay 1500
     Dim iii=0
     Do
         点击 872, 1691
-        Delay 1500
+        Delay 2000
         KeepCapture 
         If CmpColor(866, 1691, "BA984C|313131|8F8F8F", 0.9) > -1  and 判断(返回)=true Then 
             Exit Do 
         End If
         iii = iii + 1
-        If iii + 1 > 30 Then 
+        If iii  > 35 Then 
             Exit Do 
         End If
     Loop
+    Delay 2500
     iii=0
     点击 1028,1415
-    Delay 1500
+    Delay 2500
     Do
         点击 872, 1691
         Delay 1500
@@ -871,11 +1184,15 @@ Sub 自动公招()
     
     等待 主页, 1000, 5, false
     点击 311, 1514
-    Delay 1500
+    Delay 4000
+    
+   
+    
+    
     KeepCapture 
     If CmpColor(507, 718, "DA9808", 0.9) >-1 Then 
         点击 507, 718
-        Delay 4000
+        Delay 10000
         Call 收干员()
         点击 507, 718
         Delay 1000
@@ -884,7 +1201,7 @@ Sub 自动公招()
     KeepCapture
     If CmpColor(503,1576, "D9970B", 0.9) >-1 Then 
         点击 503,1576
-        Delay 4000
+        Delay 6000
         Call 收干员()
         点击 503,1576
         Delay 1000
@@ -893,22 +1210,96 @@ Sub 自动公招()
     KeepCapture
     If CmpColor(89,686,"D89712", 0.9) >-1 Then 
         点击 89,686
-        Delay 4000
+        Delay 6000
         Call 收干员()
         点击 89,686
         Delay 1000
         Call 公招()
     End If
+    KeepCapture
+    If CmpColor(89,1576,"D9970B", 0.9) >-1 Then 
+        点击 89,1576
+        Delay 6000
+        Call 收干员()
+        点击 89,1576
+        Delay 1000
+        Call 公招()
+    End If
+  
     
+    
+    
+    
+    
+    
+    Delay 1000
     点击 返回(0), 返回(1)
-    Delay 1500
+    Delay 2500
     
 End Sub
 
+Sub 自动潜能()
+	
+	等待 主页, 1000, 6, false
+	KeepCapture 
+//	TracePrint CmpColor(619,1562, "0168FF", 0.9)
+	If CmpColor(619,1562, "0168FF", 0.9) > -1 Then 
+		TracePrint "自动潜能"
+		点击 619,1562
+		Delay 2500
+		Call 潜能()
+		点击 返回(0), 返回(1)
+		Delay 1500
+	End If
+//	TracePrint "11"
+End Sub
+
+Sub 潜能()
+	Dim 上黄点=array(947,59,949,1674,"0369FF","3|9|0168FF")
+	Dim 下黄点=array(470,59,472,1674,"0369FF","3|9|0168FF")
+	For 8
+		Do
+		KeepCapture 
+		If 判断(上黄点) = true or 判断(下黄点)=true Then 
+			点击 intX, intY
+			Delay 2500
+			点击 726, 1709
+			Delay 2000
+			
+			Do
+			点击 240, 1485
+			Delay 2000
+				KeepCapture 
+			If CmpColor(441, 709, "FFAC39", 0.9) > -1 Then 
+				点击 232, 1089
+				Delay 3000
+			Else 
+				点击 214, 776
+				Delay 1500
+				Exit Do 
+			End If
+			Loop
+			点击 返回(0), 返回(1)
+			Delay 1500
+			点击 返回(0), 返回(1)
+			Delay 1500
+		Else 
+			Exit Do 
+		End If
+		loop
+		Swipe 512, 1684, 512, 253, 900
+		Delay 1000
+	Next
+End Sub
+
 Sub 公招()
+    
+    Delay 1000
     KeepCapture 
-    Delay 200
-    ret = zm.OcrBaiDuAll(364,568,532,1278)
+    
+    ret = zm.OcrBaiDuAll(364* GetScreenX()/1080 ,568* GetScreeny()/1920,532* GetScreenX()/1080,1278* GetScreeny()/1920)
+    
+    
     TracePrint "识别结果:", zm.VarInfo(ret)
     Delay 200
     If ret["words_result_num"] <> 5 Then 
@@ -923,8 +1314,8 @@ Sub 公招()
         For Each i In tags
             t=i
             tag(ub) = t["words"]
-            tag位置(ub * 2) = t["location"]["left"] + 364
-            tag位置(ub * 2 + 1) = t["location"]["top"] + 568
+            tag位置(ub * 2) = t["location"]["left"]* 1080/GetScreenX() + 364
+            tag位置(ub * 2 + 1) = t["location"]["top"]* 1920/GetScreeny() + 568
             TracePrint tag(ub),tag位置(ub * 2),tag位置(ub * 2 + 1)
             If zm.arraysearch(标签, tag(ub))=-1 Then 
                 ShowMessage "有标签未识别"
@@ -944,8 +1335,86 @@ Sub 收干员()
     点击 1017, 1848
     Delay 5000
     点击 1017, 1848
-    Delay 1000
+    Delay 1500
 End Sub
+
+Sub 制造站选干员(a)
+    Dim 干员列表
+    Dim n=0
+    Dim aa=a
+    点击 113, 488
+    Delay 2500
+    点击 67, 766
+    Delay 1000
+    点击 62, 1773
+    Delay 4000
+    点击 113, 488
+    Delay 1500
+    干员列表 = 识别干员()
+    For k = 5 To 0 step -1
+        If n < 3 Then 
+            For j = 0 To 5
+                For i = 0 To 1
+                    If 干员列表(i, j) = k Then 
+                        If k > 3 and k <> aa Then 
+                            //                            TracePrint i,j,k
+                        Else
+                            点击 776 - 421 * i, 739 + 216 * j
+                            n = n + 1
+                            Delay 500
+                            //                            TracePrint i,j,k,n
+                        End If
+                    End If
+                    If n > 2 Then 
+                        Exit for
+                    End If
+                Next
+                If n > 2 Then 
+                    Exit for
+                End If
+            next
+        End If
+    Next
+    Delay 500
+    点击 62, 1773
+    Delay 2500
+	
+End Sub
+
+Function 识别干员()
+    Dim i,j
+    Dim arr(1,5)
+    Dim 点12,点5,点6
+    KeepCapture 
+    For i = 0 To 1
+        For j = 0 To 5
+            点12 = CmpColor(679 - 421 * i, 661 + 216 * j, "3D3E3E|FEFFFF", 0.9)
+            点5=CmpColor(630 - 421 * i, 666 + 216 * j, "626464|FEFFFF", 0.9)
+            点6 = CmpColor(630 - 421 * i, 661 + 216 * j, "3D3E3E|FEFFFF", 0.9)
+            arr(i,j)=0
+            If 点12 = 0 Then '黑
+                If 点5 = 0 Then 
+                    arr(i, j) = 1'15加成
+                ElseIf 点5 = 1 Then
+                    If 点6 = 0 Then'黑 
+                        If CmpColor(662 - 421 * i, 648 + 216 * j, "000617", 0.9) > -1 Then 
+                            arr(i, j) = 4'exp加成
+                        ElseIf CmpColor(646 - 421 * i, 662 + 216 * j, "14CFDD", 0.9) > -1 Then
+                            arr(i, j) = 5'重金属加成
+                        End If
+                    ElseIf 点6 = 1 Then'白						
+                        arr(i, j) = 3'25加成
+                    End If
+				
+                End If
+            ElseIf 点12 = 1 Then
+                arr(i, j) = 2	'一圈白			
+            End If
+          
+        Next
+    Next
+    识别干员=arr
+End Function
 
 sub 选tag()
     Dim result() ,re()
@@ -978,11 +1447,11 @@ sub 选tag()
         Delay 2500
     ElseIf result(0) < 4 Then
         If 判断(刷新标签) = true Then 
-            ShowMessage "刷新标签"
+            ShowMessage "有标签" & tag(0) & tag(1) & tag(2) & tag(3) & tag(4) &",无高级组合,刷新标签"
             点击 刷新标签(0), 刷新标签(1)
             Delay 1000
             点击 290, 1259
-            Delay 2500
+            Delay 3500
             zm.TableClear(result)
             Call 公招()
             Exit Sub
@@ -1172,8 +1641,7 @@ Function 字符串转数组(text)
     dim i,n,m	
     i = 0	
     n = 0
-    Do
-	    
+    Do	    
         m = InStr(n + 1, tex, ",")	
         arr(i) = Mid(tex, n+1, m-n-1)		
         i = i + 1		
