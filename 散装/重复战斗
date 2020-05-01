@@ -1,0 +1,61 @@
+Sub 重复战斗()
+    Do
+        Rem 标记
+        If 等待(开始1, 1500, 6, false) = true Then 
+            KeepCapture 
+            If CmpColor(53, 916, "FFFFFF", 0.95) > -1 Then 
+            	TracePrint "111"
+                ShowMessage "剿灭打完"
+                Exit Do
+            Else 
+                KeepCapture
+                If CmpColor(194, 1601, "191919", 0.9) > -1 Then 
+                    点击 194, 1601
+                    Delay 1500
+                End If
+                点击 开始1(0),开始1(1)       
+            End If
+        End If
+        
+       
+        Delay 1500
+        KeepCapture
+        If 判断(理智用完) = true Then 
+            Delay 1000
+            If 碎石 = true Then 
+                点击 222, 1630
+                Delay 1000
+                Goto 标记
+            ElseIf 嗑药 = true and 判断(有药)=True Then
+                点击 222, 1630
+                Delay 1000
+                Goto 标记
+            Else 
+                点击 (理智用完(0),理智用完(1))
+                Exit Do
+            End If		 
+        End If
+	
+        等待 开始2, 1500, 6, true
+        For 每局时间
+            Delay 60000
+        Next
+        KeepCapture  
+        If 判断(升级) = true Then 
+            Delay 1000
+            点击 升级(0),升级(1)
+            Delay 1500
+        End If 
+        If 判断(剿灭打完) = true Then 
+            Delay 1000
+            点击 90, 1217
+            Delay 2000
+            等待 剿灭结束, 1000, 3, true
+        Else 
+        	等待 行动结束, 2000, 60, true
+        End If
+        KeepCapture  
+        Delay 3000
+    Loop
+    Delay 1000
+End Sub
