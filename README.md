@@ -21,6 +21,7 @@
 
 8.欢迎加入讨论群[咸鱼群](https://jq.qq.com/?_wv=1027&k=ATokIvx1)，基本上第一时间在群里更新
 
+9.友情链接[MoeAA](https://github.com/MistEO/MeoAssistantArknights),[速通](https://github.com/tkkcc/arknights),[AAH](https://github.com/ninthDevilHAUNSTER/ArknightsAutoHelper)都有群的,欢迎来玩
 
 —————————————分割线————————————————
 
