@@ -1,5 +1,5 @@
-# a-mobile-anjian-script-for-arknight
-基于按键精灵安卓版的明日方舟脚本
+# Liver Arknights Tomorrow
+明日再肝-基于按键精灵安卓版的明日方舟脚本
 
 1.目前支持1080p和720模拟器（请调成竖屏）云手机或者已root安卓手机或者vmos pro
 
