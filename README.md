@@ -55,7 +55,8 @@
 
 14.添加了一堆地方的检测重启
 
-15.一些演示视频[基建收菜](https://www.bilibili.com/video/BV1vQ4y1e7Tq/) [账号切换](https://www.bilibili.com/video/BV12Z4y1Q7Vo)
+15.一些演示视频[基建收菜](https://www.bilibili.com/video/BV1vQ4y1e7Tq/) [账号切换](https://www.bilibili.com/video/BV12Z4y1Q7Vo) [自动肉鸽](https://live.bilibili.com/11504048
+)
 
 —————————————分割线————————————————
 
@@ -71,6 +72,8 @@
 1.5 加入了很多界面的检测及重启,加入了后续side story活动的最后3张图的选图
 
 1.6 重新做了基建制造站和贸易站选干员的功能，效率up得斯
+
+1.7 结合半自动抄作业做了了自动肉鸽
 
 更新计划:做一个半自动的抄作业脚本,基本功能写的差不多了,但是还有些地方有问题
 
