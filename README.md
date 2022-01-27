@@ -1,5 +1,5 @@
 # Liver Arknights Tomorrow
-明日再肝-基于按键精灵安卓版的明日方舟脚本
+## 明日再肝-基于按键精灵安卓版的明日方舟脚本
 
 1.目前支持1080p和720模拟器（请调成竖屏）云手机或者已root安卓手机或者vmos pro
 
@@ -23,9 +23,9 @@
 
 9.友情链接[MoeAA](https://github.com/MistEO/MeoAssistantArknights),[速通](https://github.com/tkkcc/arknights),[AAH](https://github.com/ninthDevilHAUNSTER/ArknightsAutoHelper)都有群的,欢迎来玩
 
-—————————————分割线————————————————
+--
 
-注意：
+## 注意：
 
 1.此脚本因为受不了看录像以及过慢的动画编写，旨在将游戏时间压缩到最短的情况下尽量完成每日任务，一天跑两次可做完每日，(现在可以云手机启动脚本就不管了真是太好了)
 
@@ -58,9 +58,9 @@
 15.一些演示视频[基建收菜](https://www.bilibili.com/video/BV1vQ4y1e7Tq/) [账号切换](https://www.bilibili.com/video/BV12Z4y1Q7Vo) [自动肉鸽](https://live.bilibili.com/11504048
 )[作业的json格式](https://www.bilibili.com/video/BV1334y1q7io)[根据作业自动推图-将进酒](https://www.bilibili.com/video/BV1Wa411m7s1/)
 
-—————————————分割线————————————————
+--
 
-更新日志：
+## 更新日志：
 
 1.2 加入送线索和开party
 
@@ -77,6 +77,6 @@
 
 1.8 结合[识别明日方舟地图中的格子坐标](https://github.com/yuanyan3060/Arknights-Tile-Pos),重做了自动战斗,现在更加稳定了,感谢泰佬
 
-更新计划:做一个半自动的抄作业脚本,基本功能写的差不多了,但是还有些地方有问题
+更新计划:做能打通肉鸽的脚本,咕咕中
 
 
