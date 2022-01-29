@@ -55,8 +55,7 @@
 
 14.添加了一堆地方的检测重启
 
-15.一些演示视频[基建收菜](https://www.bilibili.com/video/BV1vQ4y1e7Tq/) [账号切换](https://www.bilibili.com/video/BV12Z4y1Q7Vo) [自动肉鸽](https://live.bilibili.com/11504048
-)[作业的json格式](https://www.bilibili.com/video/BV1334y1q7io)[根据作业自动推图-将进酒](https://www.bilibili.com/video/BV1Wa411m7s1/)
+15.一些演示视频[基建收菜](https://www.bilibili.com/video/BV1vQ4y1e7Tq/),[账号切换](https://www.bilibili.com/video/BV12Z4y1Q7Vo),[自动肉鸽](https://www.bilibili.com/video/BV1tR4y1g7b3/),[作业的json格式](https://www.bilibili.com/video/BV1334y1q7io),[根据作业自动推图-将进酒](https://www.bilibili.com/video/BV1Wa411m7s1/)
 
 --
 
