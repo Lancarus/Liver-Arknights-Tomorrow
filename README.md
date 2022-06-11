@@ -55,7 +55,7 @@
 
 14.添加了一堆地方的检测重启
 
-15.一些演示视频[基建收菜](https://www.bilibili.com/video/BV1vQ4y1e7Tq/),[账号切换](https://www.bilibili.com/video/BV12Z4y1Q7Vo),[自动肉鸽](https://www.bilibili.com/video/BV1tR4y1g7b3/),[作业的json格式](https://www.bilibili.com/video/BV1334y1q7io),[根据作业自动推图-将进酒](https://www.bilibili.com/video/BV1Wa411m7s1/)
+15.一些演示视频[基建收菜](https://www.bilibili.com/video/BV1vQ4y1e7Tq/),[账号切换](https://www.bilibili.com/video/BV12Z4y1Q7Vo),[自动肉鸽](https://www.bilibili.com/video/BV1tR4y1g7b3/),[作业的json格式](https://www.bilibili.com/video/BV1334y1q7io),[根据作业自动推图-将进酒](https://www.bilibili.com/video/BV1Wa411m7s1/),[1.9版本抄作业的用法](https://www.bilibili.com/video/BV1K3411G7EU),[暂停下干员的实现思路](https://www.bilibili.com/video/BV1PA4y1o7Fb)
 
 --
 
@@ -75,6 +75,8 @@
 1.7 结合半自动抄作业做了了自动肉鸽
 
 1.8 结合[识别明日方舟地图中的格子坐标](https://github.com/yuanyan3060/Arknights-Tile-Pos),重做了自动战斗,现在更加稳定了,感谢泰佬
+
+1.9 重写抄作业相关内容，匹配maa作业json协议[maa作业群](https://jq.qq.com/?_wv=1027&k=3txx0L8p)
 
 更新计划:做能打通肉鸽的脚本,咕咕中
 
