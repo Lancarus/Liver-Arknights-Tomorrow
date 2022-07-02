@@ -1,0 +1,339 @@
+{
+    "actions": [
+        {
+            "type": "二倍速"
+        },
+        {
+            "type": "部署",
+            "name": "棘刺",
+            "location": [
+                5,
+                3
+            ],
+            "direction": "右"
+        },
+        {
+            "type": "部署",
+            "name": "回费",
+            "location": [
+                5,
+                4
+            ],
+            "direction": "上"
+        },
+        {
+            "type": "部署",
+            "name": "高台输出",
+            "location": [
+                4,
+                2
+            ],
+            "direction": "右"
+        },
+        {
+            "type": "部署",
+            "name": "高台输出",
+            "location": [
+                4,
+                4
+            ],
+            "direction": "右"
+        },
+        {
+            "type": "部署",
+            "name": "浊心斯卡蒂",
+            "location": [
+                4,
+                3
+            ],
+            "direction": "右"
+        },
+        {
+            "type": "部署",
+            "name": "高台输出",
+            "location": [
+                4,
+                3
+            ],
+            "direction": "右"
+        },
+        {
+            "type": "部署",
+            "name": "奶",
+            "location": [
+                2,
+                3
+            ],
+            "direction": "右"
+        },
+        {
+            "type": "部署",
+            "name": "银灰",
+            "location": [
+                3,
+                4
+            ],
+            "direction": "右"
+        },
+        {
+            "type": "部署",
+            "name": "高台输出",
+            "location": [
+                2,
+                4
+            ],
+            "direction": "右"
+        },
+        {
+            "type": "部署",
+            "name": "高台输出",
+            "location": [
+                2,
+                2
+            ],
+            "direction": "右"
+        },
+        {
+            "type": "技能",
+            "kills": 17,
+            "name": "all"
+        },
+        {
+            "type": "技能",
+            "kills": 58,
+            "name": "all"
+        }
+    ],
+    "stage_name": "无人机起降库",
+    "groups": [
+        {
+            "name": "核心输出",
+            "opers": [
+                {
+                    "name": "假日威龙陈",
+                    "skill": 3,
+                    "skill_usage": 0
+                },
+                {
+                    "name": "艾雅法拉",
+                    "skill": 2
+                }
+            ]
+        },
+        {
+            "name": "地面阻挡",
+            "opers": [
+                {
+                    "name": "塞雷娅",
+                    "skill": 1
+                },
+                {
+                    "name": "Mon3tr"
+                },
+                {
+                    "name": "斑点",
+                    "skill": 1
+                },
+                {
+                    "name": "黑角",
+                    "skill": 1
+                },
+                {
+                    "name": "银灰",
+                    "skill": 3
+                },
+                {
+                    "name": "史尔特尔",
+                    "skill": 3
+                },
+                {
+                    "name": "月见夜",
+                    "skill": 1
+                },
+                {
+                    "name": "芬",
+                    "skill": 1
+                },
+                {
+                    "name": "香草",
+                    "skill": 1
+                },
+                {
+                    "name": "红",
+                    "skill": 1
+                },
+                {
+                    "name": "夜刀"
+                },
+                {
+                    "name": "桃金娘",
+                    "skill": 1,
+                    "skill_usage": 0
+                }
+            ]
+        },
+        {
+            "name": "奶",
+            "opers": [
+                {
+                    "name": "安赛尔",
+                    "skill": 1
+                },
+                {
+                    "name": "芙蓉",
+                    "skill": 1
+                },
+                {
+                    "name": "凯尔希",
+                    "skill": 3
+                },
+                {}
+            ]
+        },
+        {
+            "name": "高台输出",
+            "opers": [
+                {
+                    "name": "假日威龙陈",
+                    "skill": 3
+                },
+                {
+                    "name": "艾雅法拉",
+                    "skill": 2
+                },
+                {
+                    "name": "空弦",
+                    "skill": 1
+                },
+                {
+                    "name": "克洛丝",
+                    "skill": 1
+                },
+                {
+                    "name": "史都华德",
+                    "skill": 1
+                },
+                {
+                    "name": "梓兰",
+                    "skill": 1
+                },
+                {}
+            ]
+        },
+        {
+            "name": "地面单切",
+            "opers": [
+                {
+                    "name": "史尔特尔",
+                    "skill": 3
+                },
+                {
+                    "name": "红",
+                    "skill": 2
+                },
+                {
+                    "name": "Mon3tr",
+                    "skill": 0
+                },
+                {
+                    "name": "夜刀",
+                    "skill": 1
+                },
+                {
+                    "name": "桃金娘",
+                    "skill": 1
+                }
+            ]
+        },
+        {
+            "name": "炮灰",
+            "opers": [
+                {
+                    "name": "夜刀",
+                    "skill": 1
+                },
+                {
+                    "name": "红",
+                    "skill": 2
+                },
+                {
+                    "name": "Mon3tr"
+                },
+                {
+                    "name": "月见夜",
+                    "skill": 1
+                },
+                {
+                    "name": "黑角",
+                    "skill": 1
+                },
+                {
+                    "name": "芬",
+                    "skill": 1
+                },
+                {
+                    "name": "香草",
+                    "skill": 1
+                },
+                {
+                    "name": "桃金娘",
+                    "skill": 1
+                }
+            ]
+        },
+        {
+            "name": "回费",
+            "opers": [
+                {
+                    "name": "桃金娘",
+                    "skill": 1,
+                    "skill_usage": 1
+                },
+                {
+                    "name": "芬",
+                    "skill_usage": 0,
+                    "skill": 1
+                },
+                {
+                    "name": "香草",
+                    "skill": 1
+                }
+            ]
+        },
+        {
+            "name": "对空",
+            "opers": [
+                {
+                    "name": "空弦"
+                },
+                {
+                    "name": "克洛丝"
+                },
+                {
+                    "name": "艾雅法拉"
+                },
+                {
+                    "name": "史都华德"
+                },
+                {
+                    "name": "梓兰"
+                }
+            ]
+        }
+    ],
+    "doc": {
+        "title": "棘刺队群组",
+        "details": "棘刺队群组"
+    },
+    "opers": [
+        {
+            "name": "棘刺",
+            "skill": 3,
+            "skill_usage": 1
+        },
+        {
+            "name": "浊心斯卡蒂",
+            "skill": 2
+        }
+    ]
+}
