@@ -78,8 +78,8 @@
 
 1.9 重写抄作业相关内容，匹配maa作业json协议[maa作业群](https://jq.qq.com/?_wv=1027&k=3txx0L8p)
 
-1.9c 感谢光影佬的[作业生成器](https://github.com/MaaAssistantArknights/MaaCopilotDesigner)节省了好多写作业的时间,现在肉鸽的棘刺队能打到傀影了
+1.9c 感谢光影佬的[作业生成器](https://github.com/MaaAssistantArknights/MaaCopilotDesigner)节省了好多写作业的时间,现在肉鸽的棘刺队能打过第一结局了(概率很低就是了1天大概1次)
 
-更新计划:做能打通肉鸽的脚本
+更新计划:做能打通保全前三层脚本
 
 
