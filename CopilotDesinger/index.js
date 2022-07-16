@@ -56,14 +56,11 @@ const delete_icon = (data, arr) => {
 
 const action_type = () => {
     return $('<select id="type" class="form-control" style="width:auto">' +
-        '<option value="二倍速">二倍速</option>' +
         '<option value="部署">部署</option>' +
         '<option value="技能">技能</option>' +
         '<option value="撤退">撤退</option>' +
-        '<option value="子弹时间">子弹时间</option>' +
         '<option value="技能用法">技能用法</option>' +
         '<option value="摆完挂机">摆完挂机</option>' +
-        '<option value="打印">打印</option>' +
         '</select>');
 };
 
@@ -117,12 +114,6 @@ const action = (action_data, arr) => {
         .val(String(action_data.kills ?? ""))
         .change(function () { action_data.kills = $(this).val() !== "" ? Number($(this).val()) : undefined; });
     tr.append($('<td>').append(kills_input));
-    // 费用变化
-    const cost_changes = input_text()
-        .attr('type', 'number')
-        .val(String(action_data.cost_changes ?? ""))
-        .change(function () { action_data.cost_changes = $(this).val() !== "" ? Number($(this).val()) : undefined; });
-    tr.append($('<td>').append(cost_changes));
     // 干员
     const name_input = input_oper_name()
         .val(action_data.name ?? "")
@@ -163,16 +154,6 @@ const action = (action_data, arr) => {
         .val(String(action_data.rear_delay ?? ""))
         .change(function () { action_data.rear_delay = $(this).val() !== "" ? Number($(this).val()) : undefined; });
     tr.append($('<td>').append(rear_delay_input));
-    // 文本
-    const doc_input = input_text()
-        .val(action_data.doc ?? "")
-        .change(function () { action_data.doc = $(this).val(); });
-    tr.append($('<td>').append(doc_input));
-    // 颜色
-    const doc_color_input = input_text()
-        .val(action_data.doc_color ?? "")
-        .change(function () { action_data.doc_color = $(this).val(); });
-    tr.append($('<td>').append(doc_color_input));
     // 移动删除
     tr.append($('<td style="white-space:nowrap;">')
         .append(move_up_icon(action_data, arr))
