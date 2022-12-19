@@ -19,7 +19,7 @@
 
 7.需要优先选用某些tag组合请自行在tag.txt内加上，目前的逻辑是有高姿(6)和资深(5.9)时停下玩家自选，火神(5.5),普通五星(5),保底4星可能5星(4.5),小车(4.1),四星(4),赌因陀罗火神(3.2),普通tag(3)，从高到低选择，低于4刷新tag
 
-8.欢迎加入讨论群[咸鱼群](https://jq.qq.com/?_wv=1027&k=nqIXrYCR)，基本上第一时间在群里更新
+8.欢迎加入讨论群[咸鱼群](https://jq.qq.com/?_wv=1027&k=nqIXrYCR)，基本上第一时间在群里更新 加群答案：素王豆腐
 
 9.友情链接[MoeAA](https://github.com/MistEO/MeoAssistantArknights),[速通](https://github.com/tkkcc/arknights),[AAH](https://github.com/ninthDevilHAUNSTER/ArknightsAutoHelper)都有群的,欢迎来玩
 
