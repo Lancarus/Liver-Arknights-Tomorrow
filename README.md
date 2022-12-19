@@ -58,6 +58,7 @@
 15.一些演示视频[基建收菜](https://www.bilibili.com/video/BV1vQ4y1e7Tq/), [账号切换](https://www.bilibili.com/video/BV12Z4y1Q7Vo), [自动肉鸽](https://www.bilibili.com/video/BV1tR4y1g7b3/), [作业的json格式](https://www.bilibili.com/video/BV1334y1q7io), [根据作业自动推图-将进酒](https://www.bilibili.com/video/BV1Wa411m7s1/), [1.9版本抄作业的用法](https://www.bilibili.com/video/BV1K3411G7EU), [暂停下干员的实现思路](https://www.bilibili.com/video/BV1PA4y1o7Fb), [打到肉鸽第五层](https://www.bilibili.com/video/BV1iS4y1p7Y9), [首通傀影](https://www.bilibili.com/video/BV1xv4y1u74Z)， [自动保全派驻](https://www.bilibili.com/video/BV1Ca411n77p), [新版保全派驻（阿卡胡拉丛林）](https://www.bilibili.com/video/BV1QG411P75n)
 
 16.保全已接入[QQ机器人推送服务](https://github.com/tkkcc/qqimagedeliver)（速通BOT），具体使用、架设方法参考[速通的必读-QQ通知](https://arklights.pages.dev/guide.html#qq%E9%80%9A%E7%9F%A5)、同人教程：[明日方舟速通: Windows搭建本地通知教程](https://shimo.im/docs/KrkEVQYpXdi4XEAJ)
+
 --
 
 ## 更新日志：
